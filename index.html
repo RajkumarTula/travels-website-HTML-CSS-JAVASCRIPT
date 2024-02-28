@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="icon" type="image/x-icon" href="https://seeklogo.com/images/G/go-travel-logo-007404F236-seeklogo.com.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "koZSq0DwwtdrC1nX0",
+      });
+   })();
+</script>
+    <title>Go Trip</title>
+</head>
+
+<body>
+
+    <body>
+        
+        <div class="chat-icon" id="chatIcon" onclick="toggleChat()">
+            <i class="fas fa-comment-alt"></i>
+        </div>
+    
+        <!-- Chatbot Section -->
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">Raphael</div>
+            <div class="chat-body" id="chatBody">
+                <div class="bot-message">Welcome! How can I assist you today?</div>
+            </div>
+            <input type="text" class="chat-input" id="userInput" placeholder="Type your message...">
+        </div>
+        <div id="home"></div>
+        
+        <!--===========Nav Bar=================-->
+        <section class="nav-bar">
+            <div class="logo" >Go Trip</div>
+            <div class="burger-menu" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="menu" id="navMenu">
+                <li><a href="#home">home</a></li>
+                <li><a href="#tour">tours</a></li>
+                <li><a href="#cards">cards</a></li>
+                <li><a href="#packages">package</a></li>
+                <li><a href="#blog">blog</a></li>
+                <li><a href="#review">review</a></li>
+                <li><a href="#contact">contact us</a></li>
+            </ul>
+        </section>
+        
+
+    <!--===============Banner================-->
+    <section class="banner">
+        <div class="banner-text-item" id="tour">
+            <div class="banner-heading">
+                <h1>Plan your Next tour!</h1>
+            </div>
+            <form class="form" id="bookingForm">
+                <input type="text" list="mylist" placeholder="Where would you like to go?" id="destination">
+                <datalist id="mylist">
+                    <option>LONDON</option>
+                    <option>CANADA</option>
+                    <option>MONACO</option>
+                    <option>FRANCE</option>
+                    <option>JAPAN</option>
+                    <option>SWITZERLAND</option>
+                    <option>SEOUL</option>
+                </datalist>
+                <input type="date" class="date" id="travelDate">
+                <input type="text" list="vehicle-type" placeholder="How would you like to go?" id="transport">
+                <datalist id="vehicle-type">
+                    <option >CAR</option>
+                    <option >FLIGHT</option>
+                    <option >TRAIN</option>
+                    <option >CRUISE</option>
+                </datalist>
+                <a href="#" class="book" onclick="book()">book</a>
+            </form>
+        </div>
+    </section>
+
+
+    <script>
+        function book() {
+            // Retrieve user input
+            var destination = document.getElementById("destination").value;
+            var travelDate = document.getElementById("travelDate").value;
+            var vehicleType = document.getElementById("transport").value;
+
+            // Display booking details
+            var book = "BOOKING CONFIRMED!!\n" +
+                "DESTINATION: " + destination + "\n" +
+                "TRAVEL DATE: " + travelDate + "\n" +
+                "VEHICLE TYPE: " + vehicleType;
+
+            alert(book);
+            document.getElementById('bookingForm').reset();
+        }
+        function visit(){
+            alert("Would you like to redirect?");
+
+        }
+        function toggleMenu() {
+    var menu = document.getElementById("navMenu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+}
+
+        function booknow(){
+            alert("Congratulations Booking Confirmed!");
+        }
+        function rental(){
+            alert("Confirmed!");
+        }
+        const chatIcon = document.getElementById('chatIcon');
+        const chatContainer = document.getElementById('chatContainer');
+
+        function toggleChat() {
+            chatContainer.style.display = (chatContainer.style.display === 'none') ? 'block' : 'none';
+        }
+        const chatBody = document.getElementById('chatBody');
+const userInput = document.getElementById('userInput');
+
+userInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        const userMessage = userInput.value;
+        appendMessage('user', userMessage);
+        userInput.value = '';
+
+        const botMessage = processUserCommand(userMessage);
+        setTimeout(() => appendMessage('bot', botMessage), 500);
+    }
+});
+
+function appendMessage(sender, message) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add(`${sender}-message`);
+    messageElement.textContent = message;
+    chatBody.appendChild(messageElement);
+
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function processUserCommand(userMessage) {
+    const lowercaseMessage = userMessage.toLowerCase();
+
+    if (lowercaseMessage.includes('home')) {
+        window.location.href = '#home';
+        return "Sure, navigating to the home page.";
+    } else if (lowercaseMessage.includes('tour')) {
+        window.location.href = '#tour';
+        return "Sure, navigating to the tours page.";
+    } else if (lowercaseMessage.includes('cards')) {
+        window.location.href = '#cards';
+        return "Sure, navigating to the cards page.";
+    }else if (lowercaseMessage.includes('package')) {
+        window.location.href = '#packages';
+        return "Sure, navigating to the packages page.";
+    } else if (lowercaseMessage.includes('blog')) {
+        window.location.href = '#blog';
+        return "Sure, navigating to the blogs page.";
+    }else if (lowercaseMessage.includes('review')) {
+        window.location.href = '#review';
+        return "Sure, navigating to the review page.";
+    } else if (lowercaseMessage.includes('contact')) {
+        window.location.href = '#contact';
+        return "Sure, navigating to the contact page.";
+    }else if (lowercaseMessage.includes('how are you')) {
+        return "I'm just a chatbot, but thanks for asking! How can I help you? 😊";
+    }else if (lowercaseMessage.includes('your name')) {
+        return "I'm a chatbot, My name is Raphael. But you can call me Chatbot! 😄";
+    }else if (lowercaseMessage.includes('hello') || lowercaseMessage.includes('hi')) {
+        return "Hello! How can I assist you today? 😊";
+    }
+    else if (lowercaseMessage.includes('bye') || lowercaseMessage.includes('thank you')) {
+        return "Thank you for visiting! See you next time. 😊";
+    }
+    else if (lowercaseMessage.includes('good') || lowercaseMessage.includes('nice')) {
+        return "Thank you!! 😊";
+    }
+    else if (lowercaseMessage.includes('bad') || lowercaseMessage.includes('worst')) {
+        return "Sorry! i will try to improve 😓";
+    }
+
+
+    
+
+    
+    return "Sorry I cannot answer that😓!! but You can ask me to navigate to specific pages on the website. 😊";
+}
+
+
+        function sendmail(){
+            let parms = {
+                name : document.getElementById("names").value,
+                email : document.getElementById("email").value,
+                rating : document.getElementById("rating").value,
+                comments : document.getElementById("comments").value,
+
+            }
+            emailjs.send("service_4bd1ijn","template_x8byiij",parms).then(alert("Review Submitted"))
+            document.getElementById('reviewForm').reset();
+        }
+
+    </script>
+        <section class="services">
+            <div id="cards"class="service-item" onclick="visit()">
+                <img src="https://media.cntraveler.com/photos/598339c9b7a86962e8e27c5d/master/pass/Paris_GettyImages-601763009.jpg">
+                <h2 ><a href="https://www.holidify.com/collections/best-places-in-the-world" target="_blank">Spots to Visit</a></h2>
+            </div>
+            <div class="service-item" onclick="visit()">
+                <img src="https://images.bubbleup.com/width1920/quality35/mville2017/1-brand/1-margaritaville.com/gallery-media/220803-compasshotel-medford-pool-73868-1677873697.jpg">
+                <h2 ><a href="https://www.theworlds50best.com/hotels/list/1-50" target="_blank">Hotels/Resorts</a></h2>
+            </div>
+            <div class="service-item" onclick="visit()">
+                <img src="https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/gallery_slide/public/images/car-reviews/first-drives/legacy/rolls_royce_phantom_top_10.jpg?itok=XjL9f1tx">
+                <h2 ><a href="https://www.kayak.co.in/England-United-Kingdom-Hire-cars.3996.crr.html" target="_blank">Vehicle Booking</a></h2>
+            </div>
+            <div class="service-item" onclick="visit()">
+                <img src="https://img.freepik.com/premium-photo/young-people-together-planning-trip-europe-top-view-empty-white-space-notebook-where-you-time-plan-text-travel-concept_292052-1627.jpg">
+                <h2 ><a href="https://www.worldtravelguide.net" target="_blank">Travel Guide</a></h2>
+            </div>
+        </section>
+        <!--==============Places===================-->
+        <section class="places">
+            <div class="places-text" id="packages">
+                <small>FEATURED TOUR PACKAGES</small>
+                <h2>Favourite Places</h2>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="zoom-img">
+                        <div class="img-card">
+                            <img
+                                src="https://www.travelandleisure.com/thmb/dS4AacYrjunQMI1UyATDU2mStmg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/capilano-suspension-bridge-park-vancouver-VANCOVTG1021-9d96d94088034ca3859bf6d1e57254d3.jpg">
+                        </div>
+                    </div>
+
+                    <div class="text">
+                        <span class="rating">⭐⭐⭐⭐⭐</span>
+                        <h2>The Dark Forest Adventure</h2>
+                        <p class="cost">$1600 / Per Person</p>
+                        <div class="card-box">
+                            <p class="time">🕓 4 Days</p>
+                            <p class="location">✈ Vancouver,Canada</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="zoom-img">
+                        <div class="img-card">
+                            <img src="https://www.earthsattractions.com/wp-content/uploads/2019/10/paris-trip.jpg">
+                        </div>
+                    </div>
+
+                    <div class="text">
+                        <span class="rating">⭐⭐⭐⭐⭐</span>
+                        <h2>Eiffel Tower</h2>
+                        <p class="cost">$1870 / Per Person</p>
+                        <div class="card-box">
+                            <p class="time">🕓 3 Days</p>
+                            <p class="location">✈ Paris, France</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="zoom-img">
+                        <div class="img-card">
+                            <img src="https://shewandersabroad.com/wp-content/uploads/2021/02/Port-Hercules-Monaco-1.jpg">
+                        </div>
+                    </div>
+
+                    <div class="text">
+                        <span class="rating">⭐⭐⭐⭐⭐</span>
+                        <h2>Monte-Carlo</h2>
+                        <p class="cost">$1900 / Per Person</p>
+                        <div class="card-box">
+                            <p class="time">🕓 3 Days</p>
+                            <p class="location">✈ Monte, Monaco</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="zoom-img">
+                        <div class="img-card">
+                            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/37/bf/c3/caption.jpg?w=800&h=-1&s=1">
+                        </div>
+                    </div>
+
+                    <div class="text">
+                        <span class="rating">⭐⭐⭐⭐</span>
+                        <h2>Tower Bridge</h2>
+                        <p class="cost">$1400 / Per Person</p>
+                        <div class="card-box">
+                            <p class="time">🕓 2 Days</p>
+                            <p class="location">✈ London, England</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="zoom-img">
+                        <div class="img-card">
+                            <img src="https://lp-cms-production.imgix.net/news/2017/07/Mt-Fuji-Japan-Image-by-Thiago-Leite-Shutterstock.jpg">
+                        </div>
+                    </div>
+
+                    <div class="text">
+                        <span class="rating">⭐⭐⭐⭐</span>
+                        <h2>Mt.Fuji</h2>
+                        <p class="cost">$1300 / Per Person</p>
+                        <div class="card-box">
+                            <p class="time">🕓 3 Days</p>
+                            <p class="location">✈ Yamanashi, Japan</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="zoom-img">
+                        <div class="img-card">
+                            <img src="https://assets.traveltriangle.com/blog/wp-content/uploads/2015/10/Lucerne.jpg">
+                        </div>
+                    </div>
+
+                    <div class="text">
+                        <span class="rating">⭐⭐⭐⭐</span>
+                        <h2>Lucerne</h2>
+                        <p class="cost">$1500 / Per Person</p>
+                        <div class="card-box">
+                            <p class="time">🕓 4 Days</p>
+                            <p class="location">✈ Lucerne,Switzer</p>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+        </section>
+        <!DOCTYPE html>
+<html lang="en">
+    <br>
+    <br>
+    <br>
+<header>
+    <h1 id="blog">Explore Vancouver</h1>
+    <p>Discover the natural beauty, vibrant culture, and exciting adventures.</p>
+</header>
+<main>
+    <h2>Must-See Spots</h2>
+    <div class="spots-container">
+        <div class="spot">
+            <img src="https://d3d0lqu00lnqvz.cloudfront.net/media/media/a9ddf5c7-660a-4dd5-9d9c-6387da6a5b36.jpg" alt="Stanley Park">
+            <h3>Stanley Park</h3>
+            <p>Immerse yourself in nature with gardens, beaches, and stunning views.</p>
+        </div>
+        <div class="spot">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Granville_Island.jpg" alt="Granville Island Public Market">
+            <h3>Granville Island Public Market</h3>
+            <p>Explore fresh produce, artisan crafts, and unique shops.</p>
+        </div>
+        <div class="spot">
+            <img src="https://www.vmcdn.ca/f/files/glaciermedia/import/lmp-all/1287752-screen-shot-2018-10-27-at-4-04-26-pm.png" alt="Capilano Suspension Bridge">
+            <h3>Capilano Suspension Bridge</h3>
+            <p>Walk across the iconic bridge and experience breathtaking rainforest views.</p>
+        </div>
+        <div class="spot">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Queen_Elizabeth_Park.jpg" alt="Queen Elizabeth Park">
+            <h3>Queen Elizabeth Park</h3>
+            <p>Enjoy gardens, stunning views, and seasonal events.</p>
+        </div>
+    </div>
+
+    <h2>Find Your Perfect Accommodation</h2>
+    <div class="hotels-container">
+        <div class="hotel">
+            <img src="https://media.hrs.com/media/image/f9/e4/40/Fairmont_Pacific_Rim-Vancouver-Aussenansicht-17-449046.jpg" alt="Fairmont Pacific Rim">
+            <h4>Fairmont Pacific Rim</h4>
+            <p>Luxury hotel with stunning harbor views and exceptional service.</p>
+            <a href="#" onclick="booknow()">Book Now</a>
+        </div>
+        <div class="hotel">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/89/2f/a1/pan-pacific-vancouver.jpg?w=700&h=-1&s=1" alt="Pan Pacific Vancouver">
+            <h4>Pan Pacific Vancouver</h4>
+            <p>Modern hotel with waterfront location and elegant amenities.</p>
+            <a href="#" onclick="booknow()">Book Now</a>
+        </div>
+        <div class="hotel">
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/28/b1/e6/e3/hotel-lobby.jpg" alt="West Coast Parq Hotel">
+            <h4>West Coast Parq Hotel</h4>
+            <p>Boutique hotel with stylish design and convenient location.</p>
+            <a href="#" onclick="booknow()">Book Now</a>
+        </div>
+    </div>
+
+    <h2>Get Around in Style</h2>
+    <div  class="vehicle-booking" >  
+        <label for="vehicle-type">Choose Your Ride:</label>
+        <select id="vehicle-type">
+            <option value="car">Car</option>
+            <option value="bike">Bicycle</option>
+            <option value="scooter">Scooter</option>
+            <option value="kayak">Kayak</option>
+        </select>
+        <button type="button" onclick="rental()">Find Rentals</button>
+    </div>
+        <h4>Must-Try Activities</h4>   
+    </div>
+</main>
+    <header>
+        <br>
+        <br>
+        <br>
+        <h1>Unforgettable Paris</h1>
+        <p>Plan your dream Parisian getaway!</p>
+    </header>
+
+    <main>
+
+        <h2>Explore Charming Paris</h2>
+        <div class="spots-container">
+            <div class="spot">
+                <img src="https://www.travelandleisure.com/thmb/SPUPzO88ZXq6P4Sm4mC5Xuinoik=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/eiffel-tower-paris-france-EIFFEL0217-6ccc3553e98946f18c893018d5b42bde.jpg" alt="Eiffel Tower">
+                <h3>Eiffel Tower</h3>
+                <p>Gaze at the iconic landmark and breathtaking city views.</p>
+            </div>
+            <div class="spot">
+                <img src="https://th-thumbnailer.cdn-si-edu.com/owkLwxQdzPVl8Qdf8amTcNrE0aA=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/12/d0/12d08a47-a37c-4df8-a448-95fba1dd6c15/louvre.jpg" alt="Louvre Museum">
+                <h3>Louvre Museum</h3>
+                <p>Immerse yourself in art history with masterpieces from around the world.</p>
+            </div>
+            <div class="spot">
+                <img src="https://delveintoeurope.com/wp-content/uploads/2023/06/arc-de-triomphe-visit.jpg" alt="Arc de Triomphe">
+                <h3>The Arc de Triomphe</h3>
+                <p>Celebrate French history and admire the grand architecture.</p>
+            </div>
+            <div class="spot">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Notre-Dame_de_Paris%2C_4_October_2017.jpg/800px-Notre-Dame_de_Paris%2C_4_October_2017.jpg" alt="Notre Dame Cathedral">
+                <h3>Notre Dame Cathedral</h3>
+                <p>Witness the architectural marvel and its historical significance.</p>
+            </div>
+            </div>
+
+        <h2>Find Your Perfect Stay</h2>
+        <div class="hotels-container">
+            <div class="hotel">
+                <img src="https://static01.nyt.com/images/2016/06/05/travel/06UPDATE2/06UPDATE2-superJumbo.jpg" alt="Hotel Ritz Paris">
+                <h4>Hotel Ritz Paris</h4>
+                <p> A Legendary luxury and elegance in the heart of Paris.</p>
+                <a href="#" onclick="booknow()">Book Now</a>
+            </div>
+            <div class="hotel">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/d8/b7/f0/le-meurice-paris-restaurant.jpg?w=700&h=-1&s=1" alt="Le Meurice Paris">
+                <h4>Le Meurice Paris</h4>
+                <p>Modern luxury with exceptional service and Parisian charm.</p>
+                <a href="#" onclick="booknow()">Book Now</a>
+            </div>
+            <div class="hotel">
+                <img src="https://www.oyster.com/wp-content/uploads/sites/35/2019/06/lobby-v18437157-1440-1024x683.jpg" alt="Hôtel National des Arts et Métiers">
+                <h4>Hôtel National des Arts et Métiers</h4>
+                <p>Boutique hotel with unique design and convenient location.</p>
+                <a href="#" onclick="booknow()">Book Now</a>
+            </div>
+            </div>
+
+        
+
+        
+        </main>
+        <section class="about">
+            <div class="about-img">
+                <img src="https://www.eiffeltowertour.com/wp-content/uploads/2021/04/Eiffel-Tower-lit-by-an-orange-sunset.jpg">
+            </div>
+            <div class="about-text">
+                <small>Your Parisian Travel Guide</small>
+                <h2>Essential Information</h2>
+                <p>Paris has an extensive public transportation network including metro, buses, and trams. Taxis and ride-sharing options are also available.</p>    <ul>
+                        <li>Currency: Euro (EUR)</li>
+                        <li>Language: French</li>
+                        <li>Time Zone: CET (Central European Time)</li>
+                        <li>Visa required for some nationalities</li>
+                    </ul>
+                    <br><br>
+                    <h4>Getting Around</h4>
+            
+                        <br><br>
+            <h4>Must-Try Activities</h4>
+            <br><br>
+                    <label><input type="checkbox" checked>Enjoy a picnic in Jardin du Luxembourg.</label>
+                <label><input type="checkbox" checked>Take a Seine River cruise.</label>
+                <label><input type="checkbox" checked>Explore the charming Montmartre district.</label>
+                <label><input type="checkbox" checked>Sample delicious French cuisine at local cafes.</label>
+                <label><input type="checkbox" checked>Catch a cabaret show at pica do estas</label>
+                <a href="#">ABOUT US</a>
+            </div>
+        </section>
+        <div align="center" id="review">
+            <div style="max-width: 500px;" class="container">
+                        <form id="reviewForm">
+                            <div>
+                            <label for="name">Your Name:</label>
+                            <input type="text" id="names" name="Your Name:"  required >
+                    
+                            <label for="email">Your Email:</label>
+                            <input type="email" id="email" name="Your Email:" required >
+                    
+                            <label for="rating">Rating:</label>
+                            <select id="rating" name="Rating:" required >
+                                <option value="5">⭐⭐⭐⭐⭐</option>
+                                <option value="4">⭐⭐⭐⭐</option>
+                                <option value="3">⭐⭐⭐</option>
+                                <option value="2">⭐⭐</option>
+                                <option value="1">⭐</option>
+                            </select>
+                    
+                            <label for="comments">Comments:</label>
+                            <textarea id="comments" name="Comments:" rows="4" required ></textarea >
+                    
+                            <button type="submit" onclick="sendmail()">Submit Review</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        
+        <br>
+        <br>
+        <br>
+        
+        <!--===========Footer=================-->
+        <div class="footer">
+            <div class="links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li>Offers & Discounts</li>
+                    <li>Get Coupon</li>
+                    <li >Contact Us</li>
+                    <li>About</li>
+                </ul>
+            </div>
+            <div class="links">
+                <h3>New Products</h3>
+                <ul>
+                    <li>Woman Clothes</li>
+                    <li>Fashion Accessories</li>
+                    <li>Man Accessories</li>
+                    <li>Handmade Toys</li>
+                </ul>
+            </div>
+            <div class="links">
+                <h3>Support</h3>
+                <ul>
+                    <li>Frequently Asked Questions</li>
+                    <li>Report a Payment Issue</li>
+                    <li>Terms & Conditions</li>
+                    <li>Privacy Policy</li>
+                </ul>
+            </div>
+            
+        </div>
+        <div align="center" class="social-icons" id="contact">
+            <a href="https://www.linkedin.com/in/rajkumar-tula-5370b0285/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/RajkumarTula" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/im_rajkumar__/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.spotify.com/in-en/account/overview/" target="_blank" class="social-icon"><i class="fab fa-spotify"></i></a>
+            </div>
+        <div align="center">
+            ©Copyright 2024 GO TRIP Corporation
+
+        </div>
+    </body>
+
+</html>
+</body>
+
+</html>
